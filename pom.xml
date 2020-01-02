@@ -8,6 +8,7 @@
   <modules>
       <module>stream-learn</module>
       <module>thread-learn</module>
+      <module>iostream-learn</module>
   </modules>
 
   <parent>

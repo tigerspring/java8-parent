@@ -8,8 +8,8 @@ public class InvokeTest {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         InvokeTest invokeTest = new InvokeTest();
-        invokeTest.testInvokeAny();
-//        streamThreadTest.testInvokeAll();
+//        invokeTest.testInvokeAny();
+        invokeTest.testInvokeAll();
     }
 
     /**
