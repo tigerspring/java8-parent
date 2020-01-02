@@ -1,5 +1,6 @@
 package org.stream.learn;
 
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Comparator;
@@ -67,7 +68,11 @@ public class 下游收集器 {
 	}
 	
 	public static Stream<City> readCity() throws Exception{
-		return Files.lines(Paths.get("d:/city.txt"))
+		/**
+		 * 访问工程下的resources目录资源
+		 */
+		URL url = 下游收集器.class.getClassLoader().getResource("city.txt");
+		return Files.lines(Paths.get(url.toURI()))
 				.map(l->l.replaceAll("，", ",").split(","))
 				.map(a-> new City(a[0],a[1],Integer.parseInt(a[2])));
 	}
