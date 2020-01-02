@@ -3,15 +3,12 @@ package org.stream.learn;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Comparator;
-import java.util.IntSummaryStatistics;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
-public class 下游收集器 {
+public class DownStream {
 
 	public static void main(String[] args) throws Exception {
 		Stream<City> cities = readCity();
@@ -65,13 +62,15 @@ public class 下游收集器 {
 				)
 		);
 		System.out.println(aaaMap);
+
+
 	}
 	
 	public static Stream<City> readCity() throws Exception{
 		/**
 		 * 访问工程下的resources目录资源
 		 */
-		URL url = 下游收集器.class.getClassLoader().getResource("city.txt");
+		URL url = DownStream.class.getClassLoader().getResource("city.txt");
 		return Files.lines(Paths.get(url.toURI()))
 				.map(l->l.replaceAll("，", ",").split(","))
 				.map(a-> new City(a[0],a[1],Integer.parseInt(a[2])));
