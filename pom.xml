@@ -5,6 +5,14 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>java8-parent</name>
-  <modules><module>stream-learn</module>
+  <modules>
+      <module>stream-learn</module>
+      <module>thread-learn</module>
   </modules>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.0.0.RELEASE</version>
+  </parent>
 </project>
