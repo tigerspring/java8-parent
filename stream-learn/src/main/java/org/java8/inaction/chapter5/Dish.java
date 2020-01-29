@@ -6,6 +6,10 @@ public class Dish {
         DIET,NORMAL,FAT
     }
 
+    public enum DishType{
+        MEAT,FISH,SUCAI
+    }
+
     public Dish() {
     }
 
@@ -19,6 +23,13 @@ public class Dish {
         this.name = name;
         this.caluli = caluli;
         this.caluType = caluType;
+    }
+
+    public Dish(String name, Integer caluli, Enum caluType , Enum dishType) {
+        this.name = name;
+        this.caluli = caluli;
+        this.caluType = caluType;
+        this.dishType=dishType;
     }
 
     public String getName() {
@@ -51,6 +62,15 @@ public class Dish {
 
     private Enum caluType;
 
+    private Enum dishType;
+
+    public Enum getDishType() {
+        return dishType;
+    }
+
+    public void setDishType(Enum dishType) {
+        this.dishType = dishType;
+    }
 
     @Override
     public String toString() {
