@@ -3,24 +3,21 @@ package org.java8.inaction.chapter6;
 import org.java8.inaction.chapter5.Dish;
 import org.java8.inaction.chapter5.MenuList;
 
-import javax.swing.text.html.Option;
-import java.io.OutputStream;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * groupingBy(f) f是分类函数 => groupingBy(f,otList())
+ * groupingBy(f) f是分类函数 => groupingBy(f,toList())
  */
 public class 按子组收集数据 {
     public static void main(String[] args) {
 
         List<Dish> list = MenuList.getDishMenuTypeList();
+        List<Dish> list1 = MenuList.getDishMenuDishTypeList();
 
         按子组收集数据.收集器的结果转换为另个类型(list);
         按子组收集数据.其他收集器例子(list);
+        按子组收集数据.mapping收集器(list1);
     }
 
     /**
@@ -42,6 +39,30 @@ public class 按子组收集数据 {
                 Dish::getCaluType,
                 Collectors.summingInt(Dish::getCaluli)
         ));
+        System.out.println(map);
+    }
+
+    /**
+     * mapping接受两个参数
+     *  参数1：将流中（指的是groupingBy的下游流->groupby的结果）的元素做变换
+     *  参数2：将变换的结果收集起来
+     * @param list
+     */
+    public static void mapping收集器(List<Dish> list){
+        Map<Enum<Dish.DishType>, Set<Dish.CaluliLevel>> map = list.stream().collect(
+                Collectors.groupingBy(
+                        Dish::getDishType,
+                        Collectors.mapping(dish->{
+                            if(dish.getCaluli()>=100){
+                                return Dish.CaluliLevel.FAT;
+                            }else if(dish.getCaluli() < 50){
+                                return Dish.CaluliLevel.DIET;
+                            }else{
+                                return Dish.CaluliLevel.NORMAL;
+                            }
+                        },Collectors.toSet())
+                )
+        );
         System.out.println(map);
     }
 }
