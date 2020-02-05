@@ -6,7 +6,7 @@ public class ThreadPoolTest {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorService executorService = Executors.newCachedThreadPool();
-        ExecutorService fixExecutorService = Executors.newFixedThreadPool(5);
+        ExecutorService fixExecutorService = Executors.newFixedThreadPool(10);
 
 
         FutureTask<Integer> input2_task = new FutureTask<>(

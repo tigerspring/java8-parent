@@ -57,18 +57,18 @@ public class InvokeTest {
 
         ExecutorCompletionService executorCompletionService = new ExecutorCompletionService(executorService);
 
-        List<Callable<Integer>> list = new ArrayList<>();
+        List<Callable<String>> list = new ArrayList<>();
         for(int i = 0; i < 10 ; i++){
             final int tmp = i;
             Callable callAble = ()-> {
                 TimeUnit.SECONDS.sleep(tmp);
                 System.out.println(Thread.currentThread().getName()+"===> tmp : "+tmp);
-                return tmp;
+                return tmp+"";
             };
             list.add(callAble);
         }
 
-        List<Future<Integer>> result = executorService.invokeAll(list);
+        List<Future<String>> result = executorService.invokeAll(list);
         for(Future future : result){
             System.out.println(future.get());
         }
